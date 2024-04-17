@@ -30,4 +30,5 @@ The Cocktail Blender project is all about crafting delicious cocktails using fru
 Feel free to reach out for any questions or clarifications regarding the project! Let's blend some amazing cocktails together! 🎉🍹🍓🥥
 
 ## This is the UML
-![Untitled Diagram-Page-1 drawio](https://github.com/TarteelGH/Cocktail-Market/assets/114241640/8e8eee68-5638-4cef-ac7f-f9c5de7b0010)
+![UML CocktailMarket](https://github.com/TarteelGH/Cocktail-Market/assets/114241640/6660a858-9d6c-4ead-bbff-bbd594f00406)
+
