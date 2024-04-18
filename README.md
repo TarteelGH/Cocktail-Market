@@ -23,9 +23,9 @@ The Cocktail Blender project is all about crafting delicious cocktails using fru
 - Submit a pull request with your changes. 🚀
 
 ## Contributors:
-- Maran Torman
-- Huda Taboub
-- Tarteel Natsheh
+- Maran Tormam.
+- Huda Taboub.
+- Tarteel Natsheh.
 
 Feel free to reach out for any questions or clarifications regarding the project! Let's blend some amazing cocktails together! 🎉🍹🍓🥥
 
