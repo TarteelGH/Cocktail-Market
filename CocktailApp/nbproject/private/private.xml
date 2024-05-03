@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/desktop/CocktailApp/src/cocktailapp/Color.java</file>
+            <file>file:/C:/desktop/CocktailApp/src/cocktailapp/Blender.java</file>
+            <file>file:/C:/desktop/CocktailApp/src/cocktailapp/Cup.java</file>
+            <file>file:/C:/desktop/CocktailApp/src/cocktailapp/BlenderEmptyException.java</file>
+            <file>file:/C:/desktop/CocktailApp/src/cocktailapp/BlenderOverFlowException.java</file>
+            <file>file:/C:/desktop/CocktailApp/src/cocktailapp/Ingredients.java</file>
+            <file>file:/C:/desktop/CocktailApp/src/cocktailapp/Milk.java</file>
+            <file>file:/C:/desktop/CocktailApp/src/cocktailapp/Cocktail.java</file>
+            <file>file:/C:/desktop/CocktailApp/src/cocktailapp/Fruits.java</file>
+            <file>file:/C:/desktop/CocktailApp/src/cocktailapp/Sugar.java</file>
+            <file>file:/C:/desktop/CocktailApp/src/cocktailapp/CocktailApp.java</file>
+        </group>
+    </open-files>
+</project-private>
