@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package cocktailapp;
+
 import java.util.ArrayList;
 
 /**
@@ -19,15 +20,10 @@ public class Blender {
     private int volume;
     private double caloriesPerMixture;
 
-   
-    
-
-  public Blender(int capacity) {
+    public Blender(int capacity) {
         this.capacity = capacity;
         this.ingredients = new ArrayList();
     }
-
-
 
     public int getCapacity() {
         return capacity;
@@ -79,14 +75,15 @@ public class Blender {
 
     }
 
-    public Cocktail blend() throws BlenderOverFlowException {
+    public void blend() throws BlenderOverFlowException {
         if (ingredients.isEmpty()) {
-//            throw new BlenderOverFlowException();
+            throw new BlenderOverFlowException();
         }
 
         int totalRed = 0;
         int totalGreen = 0;
         int totalBlue = 0;
+
         for (Ingredients ingredient : this.ingredients) {
             totalRed += ingredient.getColor().getRed();
             totalGreen += ingredient.getColor().getGreen();
@@ -98,19 +95,21 @@ public class Blender {
             ingredients.clear();
 
         }
-        public void pour(Cup cup) throws BlenderEmptyException {
-     if (this.volume > 0) {
-        if (this.volume < cup.getCapacity()) {
-            cup.setCalories((int) (this.volume * this.caloriesPerMixture));
-            this.volume = 0;
-        } else {
-            this.volume -= cup.getCapacity();
-            cup.setCalories((int) (cup.getCapacity() * this.caloriesPerMixture));
-        }
-    } else {
-        throw new BlenderEmptyException();
+    }
+
+    public void pour(Cup cup) throws BlenderEmptyException {
+        if (this.volume > 0) {
+            if (this.volume < cup.getCapacity()) {
+                cup.setCalories((int) (this.volume * this.caloriesPerMixture));
+                this.volume = 0;
+            } else {
+                this.volume -= cup.getCapacity();
+                cup.setCalories((int) (cup.getCapacity() * this.caloriesPerMixture));
+            }
+        } else 
+            throw new BlenderEmptyException();
+        
     }
 }
 
-
-    }
+//
