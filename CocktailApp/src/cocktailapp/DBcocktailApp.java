@@ -24,9 +24,9 @@ public class DBcocktailApp {
             Statement statement = connection.createStatement();
             
             // Insert rows into the test1 table
-            statement.executeUpdate("INSERT INTO cocktail (Name) VALUES ('John')");
-            statement.executeUpdate("INSERT INTO cocktail (Name) VALUES ('Alice')");
-            statement.executeUpdate("INSERT INTO cocktail (Name) VALUES ('Bob')");
+            statement.executeUpdate("INSERT INTO cocktail (Name) VALUES ('Tarteel')");
+            statement.executeUpdate("INSERT INTO cocktail (Name) VALUES ('Huda')");
+            statement.executeUpdate("INSERT INTO cocktail (Name) VALUES ('Maram')");
 
             ResultSet resultSet = statement.executeQuery("SELECT * FROM cocktail");
             while (resultSet.next()) {
