@@ -23,6 +23,10 @@ public class Milk extends Ingredients {
         this.color = color;
     }
 
+    Milk(String cow_Milk, int i, int i0, Object WHITE) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public double getVolume() {
         return volume;
     }

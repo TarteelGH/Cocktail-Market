@@ -20,6 +20,18 @@ public class Sugar extends Ingredients {
         this.color = new Color(255,255,255);
     }
 
+    public Sugar(int volume, String name, int calories) {
+        super(name, calories);
+        this.volume = volume;
+    }
+
+    public Sugar(int volume) {
+        this.volume = volume;
+    }
+    
+
+    
+
     @Override
     public String getInfo() {
         return super.toString()+"  "+"volume"+this.volume+"  "+this.color.toString(); 

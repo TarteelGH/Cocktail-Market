@@ -9,6 +9,8 @@ package cocktailapp;
  * @author tarteel
  */
 public class Color {
+
+    static Object WHITE;
     
      public int red;
   public int blue;  

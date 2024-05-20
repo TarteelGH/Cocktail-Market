@@ -17,14 +17,42 @@ public class Blender {
     private ArrayList<Ingredients> ingredients;
     private int capacity;
     private Cup cup;
-    private int calories;
+    private double calories;
     private Color color;
-    private int volume;
+    private double volume;
     private double caloriesPerMixture;
 
     public Blender(int capacity) {
         this.capacity = capacity;
         this.ingredients = new ArrayList();
+    }
+
+    public ArrayList<Ingredients> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(ArrayList<Ingredients> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public double getCalories() {
+        return calories;
+    }
+
+    public void setCalories(double calories) {
+        this.calories = calories;
+    }
+
+    public double getCaloriesPerMixture() {
+        return caloriesPerMixture;
+    }
+
+    public void setCaloriesPerMixture(double caloriesPerMixture) {
+        this.caloriesPerMixture = caloriesPerMixture;
+    }
+
+    public Blender(double calories) {
+        this.calories = calories;
     }
 
     public int getCapacity() {
@@ -43,13 +71,13 @@ public class Blender {
         this.cup = cup;
     }
 
-    public int getCalories() {
-        return calories;
+    public Blender(double calories, Color color, int volume) {
+        this.calories = calories;
+        this.color = color;
+        this.volume = volume;
     }
 
-    public void setCalories(int calories) {
-        this.calories = calories;
-    }
+    
 
     public Color getColor() {
         return color;
