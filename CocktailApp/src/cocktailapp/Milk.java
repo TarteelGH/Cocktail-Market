@@ -10,31 +10,30 @@ package cocktailapp;
  */
 public class Milk extends Ingredients {
 
-    private double volume;
+    private int volume;
     private Color color;
 
     public Milk() {
     }
 
-    public Milk(String name ,double volume, int calories, Color color) {
+    public Milk(String name , int calories,int volume) {
         super(name, calories);
         this.volume = volume;
-        
         this.color = color;
     }
 
-    Milk(String cow_Milk, int i, int i0, Object WHITE) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 
-    public double getVolume() {
+    @Override
+    public int getVolume() {
         return volume;
     }
 
-    public void setVolume(double volume) {
+    public void setVolume(int volume) {
         this.volume = volume;
     }
 
+    @Override
     public Color getColor() {
         return color;
     }

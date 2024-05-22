@@ -22,17 +22,11 @@ public class Cup {
         return capacity;
     }
 
-   
-    public static String getinfo() {
-    return getinfo();
-    }
-int getCalories() {
+    public int getCalories() {
         return calories;
     }
     
     public void setCalories(int calories){
         this.calories = calories;
     }
-    
-    
 }

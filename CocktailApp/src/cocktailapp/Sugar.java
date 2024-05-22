@@ -10,40 +10,35 @@ package cocktailapp;
  */
 public class Sugar extends Ingredients {
 
-    private int volume;
-
     private Color color;
+    int volume;
+    @Override
+     public Color getColor() {
+        return color;
+    }
+     
     
-    public Sugar(){
-        super("Sugar", 200);
-        this.volume = 0;
-        this.color = new Color(255,255,255);
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
-    public Sugar(int volume, String name, int calories) {
+    @Override
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+    
+ public Sugar(Color color, String name, int calories) {
         super(name, calories);
-        this.volume = volume;
+        this.color = color;
     }
-
-    public Sugar(int volume) {
-        this.volume = volume;
-    }
-    
-
-    
-
     @Override
-    public String getInfo() {
-        return super.toString()+"  "+"volume"+this.volume+"  "+this.color.toString(); 
+ public String getInfo() {
+        return super.toString() + "  " + "Color: "+this.color.toString();
     }
-    
-    public Color getColor(){
-        return new Color(255,255,255);
-    }
-
-    @Override
-    public double getVolume() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+ 
 }

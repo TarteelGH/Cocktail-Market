@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package cocktailapp;
-
-
 /**
  *
  * @author tarteel
@@ -41,7 +39,7 @@ public abstract class Ingredients {
        return "Ingredients{" + "name=" + name + ", calories=" + calories + '}';
     };
     
-    public abstract double getVolume(); 
+    public abstract int getVolume();
     public abstract Color getColor(); 
     
  

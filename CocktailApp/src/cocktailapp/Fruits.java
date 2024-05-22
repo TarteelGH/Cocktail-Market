@@ -10,26 +10,27 @@ package cocktailapp;
  */
 public class Fruits extends Ingredients {
 
-    private double volume;
+    private int volume;
     private Color color;
 
     public Fruits() {
     }
 
-    public Fruits(String name ,double volume, int calories, Color color) {
+    public Fruits(String name , int calories,int volume, Color color) {
         super(name, calories);
         this.volume = volume;
         this.color = color;
     }
 
-    public double getVolume() {
+    public int getVolume() {
         return this.volume;
     }
 
-    public void setVolume(double volume) {
+    public void setVolume(int volume) {
         this.volume = volume;
     }
 
+    @Override
     public Color getColor() {
         return this.color;
     }

@@ -11,8 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import java.sql.*;
 
 
@@ -21,46 +20,43 @@ import java.sql.*;
  * @author tarteel
  */
 
-public class DBcocktailApp {
-    String url = "jdbc:mysql://localhost:3306/cocktaildatabase";
+public class DBcocktailApp implements myLog{
+    String url = "jdbc:mysql://localhost:3306/cocktail";
     String username = "root";
     String password = "";
-    String date, time;
-//    String log = Cup.getinfo();
+   
+
             
-    public void DBLogger(String NDate, String NTime, String log) throws ClassNotFoundException {
-        date = "" + NDate;
-        time = "" + NTime;
-
-        Class.forName("com.mysql.jdbc.Driver");
-
-        String insertSql = "INSERT INTO Cocktail (date, time, info) VALUES(\"" + date + "\",\"" + time + "\",\"" + log + "\")";
-
+    @Override
+    public void log( String log) {
+        
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Exception in database logger");
+        }
+
+        String insertSql = "INSERT INTO cocktail_table (info) VALUES(\"" + log + "\")";
+
+       try {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(DBcocktailApp.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Exception in database logger");
             }
             Connection conn = DriverManager.getConnection(url, username, password);
+//            Statement statement = conn.createStatement();
+//            ResultSet resultSet = statement.executeQuery("select * from history");
+//            while (resultSet.next()) {
+//                System.out.println(resultSet.getInt(1) + " - " + resultSet.getString(2));
+//            }
             PreparedStatement preparedStmt = conn.prepareStatement(insertSql);
             preparedStmt.execute();
-            conn.close();
+
         } catch (SQLException e) {
             System.out.println(e);
         }
+
     }
 
-    public static void main(String[] args) {
-        DBcocktailApp app = new DBcocktailApp();
-        String currentDate = "2024-05-21"; // Replace with actual date
-        String currentTime = "12:00:00";   // Replace with actual time
-        String logMessage = "Example log message"; // Replace with actual log message
-
-        try {
-            app.DBLogger(currentDate, currentTime, logMessage);
-        } catch (ClassNotFoundException e) {
-            Logger.getLogger(DBcocktailApp.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
 }

@@ -19,7 +19,7 @@ public class Blender {
     private Cup cup;
     private double calories;
     private Color color;
-    private double volume;
+    private int volume;
     private double caloriesPerMixture;
 
     public Blender(int capacity) {

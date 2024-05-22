@@ -4,6 +4,7 @@
  */
 package cocktailapp;
 
+import DBloggers.DBcocktailApp;
 import Exceptions.BlenderEmptyException;
 import Exceptions.BlenderOverFlowException;
 
@@ -16,35 +17,44 @@ import javax.swing.JOptionPane;
  */
 public class JCocktail extends javax.swing.JFrame {
 
-    ArrayList<Blender> arr = new ArrayList<>();
-
-    private Fruits[] fruits = {
-        new Fruits("Apple", 52, 100, new Color(144, 238, 144)),
-        new Fruits("Banana", 89, 100, new Color(255, 255, 0)),
-        new Fruits("Orange", 47, 100, new Color(255, 165, 0)),
-        new Fruits("Kiwi", 61, 100, new Color(142, 229, 63)),
-        new Fruits("Pineapple", 50, 100, new Color(255, 224, 102)),};
-    private Milk[] milks = {
-        new Milk("Cow Milk", 42, 100, Color.WHITE),
-        new Milk("Almond Milk", 15, 100, Color.WHITE)
-    };
-
-    Sugar s = new Sugar(60, "sugar", 400);
+    private ArrayList<Fruits> fruits;
+    private ArrayList<Fruits> addedFruits=new ArrayList<>(); 
+    private ArrayList<Ingredients> milk;
+    private ArrayList<Ingredients> addedMilk;
+    private int totalCalories = 0;
+    private int totalVolume = 0;
+    private final int smallCup = 100;
+    private final int mediumCup = 150;
+    private final int largeCup = 200;
+    private final int blenderCapacity = 1200;
+    private int blenderVolume;
 
 //       private Sugar[] sugars = {
 //        new Sugar("No Sugar", 0, 0, null),
 //        new Sugar("One Spoon", 16, 5, Color.WHITE),
 //        new Sugar("Two Spoons", 32, 10, Color.WHITE)
 //    };
-    private final int smallCup = 100;
-    private final int mediumCup = 150;
-    private final int largeCup = 200;
-    private final int blenderCapacity = 1000;
-    private int blenderVolume;
 
     /**
      * Creates new form JCocktail
      */
+    void display() {
+        String[] names = new String[addedFruits.size()];
+        for (int i = 0; i < addedFruits.size(); i++) {
+            names[i] = addedFruits.get(i).getName();
+        }
+        blenderInfojList1.setListData(names);
+    }
+    
+    void display1() {
+        String[] names = new String[addedMilk.size()];
+        for (int i = 0; i < addedMilk.size(); i++) {
+            names[i] = addedMilk.get(i).getName();
+        }
+        
+        blenderInfojList1.setListData(names);
+    }
+    
     public JCocktail() {
         initComponents();
     }
@@ -72,7 +82,7 @@ public class JCocktail extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         menuPanel = new javax.swing.JPanel();
         fruitPanel = new javax.swing.JPanel();
-        fruitsComboBox = new javax.swing.JComboBox<>();
+        jComboBoxFruit = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         fruitVolumeTextField = new javax.swing.JTextField();
         addFruitsButton = new javax.swing.JButton();
@@ -106,9 +116,9 @@ public class JCocktail extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        pourButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        blenderInfojList1 = new javax.swing.JList<>();
         historyPanel = new javax.swing.JPanel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
@@ -218,12 +228,12 @@ public class JCocktail extends javax.swing.JFrame {
         fruitPanel.setBackground(new java.awt.Color(153, 255, 153));
         fruitPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fruits", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 15))); // NOI18N
 
-        fruitsComboBox.setBackground(new java.awt.Color(204, 255, 204));
-        fruitsComboBox.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
-        fruitsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Strawberry", "Orange", "Apple", "Banana", "kiwi", "pineapple" }));
-        fruitsComboBox.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxFruit.setBackground(new java.awt.Color(204, 255, 204));
+        jComboBoxFruit.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        jComboBoxFruit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apple", "Banana", "Orange", "Kiwi", "Pineapple" }));
+        jComboBoxFruit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fruitsComboBoxActionPerformed(evt);
+                jComboBoxFruitActionPerformed(evt);
             }
         });
 
@@ -247,7 +257,7 @@ public class JCocktail extends javax.swing.JFrame {
                     .addGroup(fruitPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(fruitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fruitsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxFruit, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(fruitPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -261,7 +271,7 @@ public class JCocktail extends javax.swing.JFrame {
             fruitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fruitPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(fruitsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxFruit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(fruitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -270,7 +280,7 @@ public class JCocktail extends javax.swing.JFrame {
                 .addComponent(addFruitsButton))
         );
 
-        fruitsComboBox.getAccessibleContext().setAccessibleDescription("");
+        jComboBoxFruit.getAccessibleContext().setAccessibleDescription("");
 
         milkPanel.setBackground(new java.awt.Color(153, 255, 153));
         milkPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Milk", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 15))); // NOI18N
@@ -575,18 +585,18 @@ public class JCocktail extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
-        jButton4.setText("Pour into cup/s");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        pourButton.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        pourButton.setText("Pour into cup/s");
+        pourButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                pourButtonActionPerformed(evt);
             }
         });
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Blender Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 18))); // NOI18N
 
-        jList1.setBackground(new java.awt.Color(204, 255, 204));
-        jScrollPane1.setViewportView(jList1);
+        blenderInfojList1.setBackground(new java.awt.Color(204, 255, 204));
+        jScrollPane1.setViewportView(blenderInfojList1);
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
@@ -626,7 +636,7 @@ public class JCocktail extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addComponent(jButton3)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pourButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -652,7 +662,7 @@ public class JCocktail extends javax.swing.JFrame {
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jButton3)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(pourButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(menuPanelLayout.createSequentialGroup()
                         .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -739,14 +749,77 @@ public class JCocktail extends javax.swing.JFrame {
     }//GEN-LAST:event_smallRadioButton1ActionPerformed
 
     private void addMilkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMilkButtonActionPerformed
-        int milkvolume = Integer.parseInt(addMilkButton.getText());
+       if (addedMilk == null) {
+        addedMilk = new ArrayList<>();
+    }
+       milk = new ArrayList<>();
+        milk.add(new Milk("Cow's Milk", 42, 100));
+        milk.add(new Milk("Almond Milk", 17, 100));
+//    initializeIngredientsMilk();
+//       populatemilkComboBoxes();
+        try {
+            int selectedIndex = milkComboBox.getSelectedIndex();
+            if (selectedIndex == -1) {
+                throw new Exception("No milk type selected!");
+            }
+             ;
+        //    milk.get(selectedIndex);
+            String name = milkComboBox.getSelectedItem().toString();
+            int milkVolume = Integer.parseInt(milkVolumeTextField.getText());
+            int milkCalories = ((milk.get(selectedIndex).getCalories()) * milkVolume) / milk.get(selectedIndex).getVolume();
+            Milk m = new Milk(name, milkVolume, milkCalories);
+            addedMilk.add(m);
+            display1();
+            milkVolumeTextField.setText("");
+            
+        //    listModel.addElement(name);
+        
+            milk.get(selectedIndex).setCalories(milkCalories);
+            totalCalories += milk.get(selectedIndex).getCalories();
+            totalVolume += milk.get(selectedIndex).getVolume();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_addMilkButtonActionPerformed
 
     private void addFruitsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFruitsButtonActionPerformed
-        Ingredients selectedFruit = fruits[fruitsComboBox.getSelectedIndex()];
-        int fruitvolume = Integer.parseInt(fruitVolumeTextField.getText());
+        fruits = new ArrayList<>();
+        fruits.add(new Fruits("Apple", 52, 100, new Color(144, 238, 144)));
+        fruits.add(new Fruits("Banana", 89, 100, new Color(255, 255, 0)));
+        fruits.add(new Fruits("Orange", 47, 100, new Color(255, 165, 0)));
+        fruits.add(new Fruits("Kiwi", 61, 100, new Color(142, 229, 63)));
+        fruits.add(new Fruits("Pineapple", 50, 100, new Color(255, 224, 102)));
+//         populatefruitComboBoxes();
+        try {
+            int selectedIndex = jComboBoxFruit.getSelectedIndex();
+            if (selectedIndex == -1) {
+                throw new Exception("No fruit selected!");
+            }
+
+//           fruits.get(selectedIndex)
+            String name = jComboBoxFruit.getSelectedItem().toString();
+            int fruitVolume = Integer.parseInt(fruitVolumeTextField.getText());
+            int fruitCalories = ((fruits.get(selectedIndex).getCalories()) * fruitVolume) / fruits.get(selectedIndex).getVolume();
+            int redColor = fruits.get(selectedIndex).getColor().getRed();
+            int greenColor = fruits.get(selectedIndex).getColor().getGreen();
+            int blueColor = fruits.get(selectedIndex).getColor().getBlue();
+            Color color = new Color(redColor, greenColor, blueColor);
+            Fruits f = new Fruits(name, fruitCalories, fruitVolume, color);
+            addedFruits.add(f);
+            display();
+            fruitVolumeTextField.setText("");
+//           new code above
+
+            fruits.get(selectedIndex).setCalories(fruitCalories);
+            totalCalories += fruits.get(selectedIndex).getCalories();
+            totalVolume += fruits.get(selectedIndex).getVolume();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_addFruitsButtonActionPerformed
@@ -754,6 +827,8 @@ public class JCocktail extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(1);
+        DBcocktailApp db=new DBcocktailApp();
+        db.log("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel12AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel12AncestorAdded
@@ -767,13 +842,13 @@ public class JCocktail extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        Ingredients selectedMilk = milks[milkComboBox.getSelectedIndex()];
-
-        double totalCalories = 0;
-        int totalVolume = 0;
-        for (Blender blender : arr) {
-            totalCalories += blender.getCalories();
-            totalVolume += blender.getVolume();
+//        Ingredients selectedMilk = milks[milkComboBox.getSelectedIndex()];
+//
+//        double totalCalories = 0;
+//        int totalVolume = 0;
+//        for (Blender blender : arr) {
+//            totalCalories += blender.getCalories();
+           // totalVolume += blender.getVolume();
 
             /*switch (fruitsComboBox.getSelectedItem().toString()) {
            case "pineapple":
@@ -811,25 +886,25 @@ public class JCocktail extends javax.swing.JFrame {
 // TODO add your handling code here:
 
     }//GEN-LAST:event_jButton3ActionPerformed
-        int totalCalories = selectedFruit.getCalories() + selectedMilk.getCalories();
-        int totalVolume = selectedFruit.getVolume() + selectedMilk.getVolume();
-
-
-    private void populateComboBoxes() {
-        for (Ingredients fruit : fruits) {
-            fruitsComboBox.addItem(fruit.getName());
-        }
-        for (Ingredients milk : milks) {
-            milkComboBox.addItem(milk.getName());
-        }
-
-    }
+//        int totalCalories = selectedFruit.getCalories() + selectedMilk.getCalories();
+//        int totalVolume = selectedFruit.getVolume() + selectedMilk.getVolume();
+//
+//
+//    private void populateComboBoxes() {
+//        for (Ingredients fruit : fruits) {
+//            fruitsComboBox.addItem(fruit.getName());
+//        }
+//        for (Ingredients milk : milks) {
+//            milkComboBox.addItem(milk.getName());
+//        }
+//
+//    }
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void pourButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pourButtonActionPerformed
         // TODO add your handling code here:
         int cupVolume = 0;
         int numberOfCups = 0;
@@ -854,14 +929,14 @@ public class JCocktail extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Poured: " + cupVolume + " ,Remaining: " + blenderVolume);
 
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_pourButtonActionPerformed
 
-    private void fruitsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fruitsComboBoxActionPerformed
+    private void jComboBoxFruitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFruitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fruitsComboBoxActionPerformed
+    }//GEN-LAST:event_jComboBoxFruitActionPerformed
 
     private void addSugarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSugarButtonActionPerformed
-        int sugarvolume = Integer.parseInt(addSugarButton.getText());
+        // int sugarvolume = Integer.parseInt(addSugarButton.getText());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_addSugarButtonActionPerformed
@@ -905,17 +980,17 @@ public class JCocktail extends javax.swing.JFrame {
     private javax.swing.JButton addFruitsButton;
     private javax.swing.JButton addMilkButton;
     private javax.swing.JButton addSugarButton;
+    private javax.swing.JList<String> blenderInfojList1;
     private javax.swing.ButtonGroup buttonGroupSize;
     private javax.swing.JPanel cupSizePanel;
     private javax.swing.JPanel fruitPanel;
     private javax.swing.JTextField fruitVolumeTextField;
-    private javax.swing.JComboBox<String> fruitsComboBox;
     private javax.swing.JPanel historyPanel;
     private javax.swing.JPanel homePanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBoxFruit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -934,7 +1009,6 @@ public class JCocktail extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
@@ -959,6 +1033,7 @@ public class JCocktail extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> milkComboBox;
     private javax.swing.JPanel milkPanel;
     private javax.swing.JTextField milkVolumeTextField;
+    private javax.swing.JButton pourButton;
     private javax.swing.JRadioButton smallRadioButton1;
     private javax.swing.JTextField sugarVolumeTextField;
     private javax.swing.JPanel sugatPanel;

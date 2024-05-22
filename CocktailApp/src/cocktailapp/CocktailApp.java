@@ -4,6 +4,7 @@
  */
 package cocktailapp;
 
+import DBloggers.*;
 import Exceptions.BlenderOverFlowException;
 import Exceptions.BlenderEmptyException;
 
@@ -13,6 +14,12 @@ import Exceptions.BlenderEmptyException;
  */
 public class CocktailApp {
 
+    
+     // DBcocktailApp db=new DBcocktailApp();
+     // db.log("");
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -24,8 +31,8 @@ public class CocktailApp {
         Fruits orange = new Fruits("Orange", 90, 80, new Color(76,5,3));
         Fruits banana1 = new Fruits("Banana", 90, 80, new Color(76,5,3));
         Fruits banana2 = new Fruits("Banana", 90, 80, new Color(76,5,3));
-        Milk milk = new Milk("milk", 50, 200, new Color(24,5,6));
-        Sugar suger = new Sugar();
+       // Milk milk = new Milk("milk", 50, 200, new Color(24,5,6));
+       // Sugar suger = new Sugar();
         
         Blender blender = new Blender(1000);    
         
@@ -52,7 +59,7 @@ public class CocktailApp {
             blender.pour(cup1);
             blender.pour(cup2);
             blender.pour(cup3);
-            System.out.println("Cocktail Volume " + blender.getVolume());
+           System.out.println("Cocktail Volume " + blender.getVolume());
         }
         catch(BlenderEmptyException ex){
             System.out.println(ex.getMessage());

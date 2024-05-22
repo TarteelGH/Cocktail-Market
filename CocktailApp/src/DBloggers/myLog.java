@@ -8,7 +8,7 @@ package DBloggers;
  *
  * @author actc
  */
-public interface Logger {
+public interface myLog {
     
     void log(String log);
 
