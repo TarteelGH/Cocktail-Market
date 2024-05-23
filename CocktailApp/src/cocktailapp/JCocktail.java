@@ -21,6 +21,7 @@ public class JCocktail extends javax.swing.JFrame {
     private ArrayList<Fruits> addedFruits=new ArrayList<>(); 
     private ArrayList<Ingredients> milk;
     private ArrayList<Ingredients> addedMilk;
+    private ArrayList<Ingredients> addedSugar = new ArrayList<>();
     private int totalCalories = 0;
     private int totalVolume = 0;
     private int sugarVolume = 0;
@@ -56,17 +57,28 @@ public class JCocktail extends javax.swing.JFrame {
 //        blenderInfojList1.setListData(names);
 //    }
     
-    void displayIngredients() {
-        String[] names = new String[addedFruits.size() + addedMilk.size()];
-        int i = 0;
-        for (Fruits fruit : addedFruits) {
-            names[i++] = fruit.getName();
-        }
-        for (Ingredients milk : addedMilk) {
-            names[i++] = milk.getName();
+     void display() {
+        String[] names = new String[addedFruits.size()];
+        for (int i = 0; i < addedFruits.size(); i++) {
+            names[i] = addedFruits.get(i).getName();
         }
         blenderInfojList1.setListData(names);
     }
+
+    void display1() {
+        String[] names = new String[addedMilk.size()];
+        for (int i = 0; i < addedMilk.size(); i++) {
+            names[i] = addedMilk.get(i).getName();
+        }
+        blenderInfojList1.setListData(names);
+    }
+    private void displaySugar() {
+    String[] names = new String[addedSugar.size()];
+    for (int i = 0; i < addedSugar.size(); i++) {
+        names[i] = addedSugar.get(i).getName();
+    }
+    blenderInfojList1.setListData(names);
+}
 
     
     public JCocktail() {
@@ -842,7 +854,7 @@ public class JCocktail extends javax.swing.JFrame {
             int milkCalories = ((milk.get(selectedIndex).getCalories()) * milkVolume) / milk.get(selectedIndex).getVolume();
             Milk m = new Milk(name, milkVolume, milkCalories);
             addedMilk.add(m);
-            displayIngredients();
+            display1();
             milkVolumeTextField.setText("");
             
         //    listModel.addElement(name);
@@ -882,7 +894,7 @@ public class JCocktail extends javax.swing.JFrame {
             Color color = new Color(redColor, greenColor, blueColor);
             Fruits f = new Fruits(name, fruitCalories, fruitVolume, color);
             addedFruits.add(f);
-            displayIngredients();
+            display();
             fruitVolumeTextField.setText("");
 //           new code above
 
@@ -1064,13 +1076,14 @@ public class JCocktail extends javax.swing.JFrame {
 
     int sugarVolume = spoonsOfSugar * sugarVolumePerSpoon;
     int sugarCalories = spoonsOfSugar * sugarCaloriesPerSpoon;
-
+    Sugar s = new Sugar("sugar", sugarVolume,sugarCalories);
+        addedSugar.add(s);
     // Update total calories and volume
     totalCalories += sugarCalories;
     totalVolume += sugarVolume;
 
     // Display updated info
-    displayIngredients(); 
+    displaySugar(); 
         // int sugarvolume = Integer.parseInt(addSugarButton.getText());
 
         // TODO add your handling code here:
