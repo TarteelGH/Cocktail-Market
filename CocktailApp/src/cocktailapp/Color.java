@@ -12,17 +12,19 @@ public class Color {
 
     static Object WHITE;
     
-     public int red;
-  public int blue;  
-  public int green;  
+    public int red;
+    public int green;
+    public int blue;  
+    
 
     public Color() {
     }
-
-    public Color(int red, int blue, int green) {
+//RGB
+    public Color(int red, int green, int blue) {
         this.red = red;
-        this.blue = blue;
         this.green = green;
+        this.blue = blue;
+       
     }
 
     public int getRed() {
@@ -33,14 +35,7 @@ public class Color {
         this.red = red;
     }
 
-    public int getBlue() {
-        return blue;
-    }
-
-    public void setBlue(int blue) {
-        this.blue = blue;
-    }
-
+   
     public int getGreen() {
         return green;
     }
@@ -48,7 +43,14 @@ public class Color {
     public void setGreen(int green) {
         this.green = green;
     }
+    
+    public int getBlue() {
+            return blue;
+        }
 
+        public void setBlue(int blue) {
+            this.blue = blue;
+        }
    
 //    public static Color blend(Color color1, Color color2);
 //    public String getInfo();

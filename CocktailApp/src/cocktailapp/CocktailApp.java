@@ -15,8 +15,12 @@ import Exceptions.BlenderEmptyException;
 public class CocktailApp {
 
     
-     // DBcocktailApp db=new DBcocktailApp();
-     // db.log("");
+//        Cocktail cocktail = new Cocktail();
+//        String data = cocktail.getInfo();
+          DBcocktailApp db = new DBcocktailApp();
+//        db.log(blenderInfo);
+//        db.log(data);
+        
     
     
     
