@@ -16,8 +16,6 @@ public class Blender {
 
     private ArrayList<Ingredients> ingredients;
     private int capacity;
-    private Cup cup;
-    private double calories;
     private Color color;
     private int volume;
     private double caloriesPerMixture;
@@ -26,7 +24,13 @@ public class Blender {
         this.capacity = capacity;
         this.ingredients = new ArrayList();
     }
-
+public Blender(ArrayList<Ingredients> ingredients, int capacity, Color color, int volume, double caloriesPerMixture) {
+        this.ingredients = ingredients;
+        this.capacity = capacity;
+        this.color = color;
+        this.volume = volume;
+        this.caloriesPerMixture = caloriesPerMixture;
+    }
     public ArrayList<Ingredients> getIngredients() {
         return ingredients;
     }
@@ -35,13 +39,6 @@ public class Blender {
         this.ingredients = ingredients;
     }
 
-    public double getCalories() {
-        return calories;
-    }
-
-    public void setCalories(double calories) {
-        this.calories = calories;
-    }
 
     public double getCaloriesPerMixture() {
         return caloriesPerMixture;
@@ -49,10 +46,6 @@ public class Blender {
 
     public void setCaloriesPerMixture(double caloriesPerMixture) {
         this.caloriesPerMixture = caloriesPerMixture;
-    }
-
-    public Blender(double calories) {
-        this.calories = calories;
     }
 
     public int getCapacity() {
@@ -63,21 +56,6 @@ public class Blender {
         this.capacity = capacity;
     }
 
-    public Cup getCup() {
-        return cup;
-    }
-
-    public void setCup(Cup cup) {
-        this.cup = cup;
-    }
-
-    public Blender(double calories, Color color, int volume) {
-        this.calories = calories;
-        this.color = color;
-        this.volume = volume;
-    }
-
-    
 
     public Color getColor() {
         return color;
@@ -95,14 +73,14 @@ public class Blender {
         this.volume = Volume;
     }
 
-    public void add(Ingredients ingredient) throws BlenderOverFlowException {
-        if (this.volume + ingredient.getVolume() > this.capacity) {
-            throw new BlenderOverFlowException();
+    public void addIngredient(Ingredients ingredient) throws BlenderOverFlowException {
+        
+        if (getVolume() + ingredient.getVolume() <= getCapacity()) {
+            ingredients.add(ingredient);
+             
         } else {
-            this.ingredients.add(ingredient);
+            throw new BlenderOverFlowException();
         }
-        this.volume += ingredient.getVolume();
-
     }
 
     public void blend() throws BlenderOverFlowException {
@@ -118,10 +96,8 @@ public class Blender {
             totalRed += ingredient.getColor().getRed();
             totalGreen += ingredient.getColor().getGreen();
             totalBlue += ingredient.getColor().getBlue();
-
-            this.calories += ingredient.getCalories();
             this.color = new Color(totalRed / this.ingredients.size(), totalGreen / this.ingredients.size(), totalBlue / this.ingredients.size());
-            this.caloriesPerMixture = (double) (this.calories) / (double) (this.volume);
+            this.caloriesPerMixture +=caloriesPerMixture;
             ingredients.clear();
 
         }
@@ -139,6 +115,13 @@ public class Blender {
         } else 
             throw new BlenderEmptyException();
         
+    }
+    public void clear(Cocktail cocktail, Blender blender) {
+
+        blender.setColor(new Color(0, 0, 0));
+        blender.setCaloriesPerMixture(0);
+        blender.setVolume(0);
+
     }
 }
 

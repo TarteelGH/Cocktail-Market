@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class JCocktail extends javax.swing.JFrame {
 
-    private ArrayList<Fruits> fruits;
-    private ArrayList<Fruits> addedFruits=new ArrayList<>(); 
+    private ArrayList<Ingredients> fruits;
+    private ArrayList<Ingredients> addedFruits=new ArrayList<>(); 
     private ArrayList<Ingredients> milk;
     private ArrayList<Ingredients> addedMilk;
     private ArrayList<Ingredients> addedSugar = new ArrayList<>();
@@ -928,7 +928,7 @@ public class JCocktail extends javax.swing.JFrame {
             int totalRed = 0, totalGreen = 0, totalBlue = 0;
             int totalCombinedVolume = 0;
 
-            for (Fruits fruit : addedFruits) {
+            for (Ingredients fruit : addedFruits) {
                 totalRed += fruit.getColor().getRed() * fruit.getVolume();
                 totalGreen += fruit.getColor().getGreen() * fruit.getVolume();
                 totalBlue += fruit.getColor().getBlue() * fruit.getVolume();
