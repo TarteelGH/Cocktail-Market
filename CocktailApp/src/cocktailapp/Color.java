@@ -19,7 +19,7 @@ public class Color {
 
     public Color() {
     }
-//RGB
+
     public Color(int red, int green, int blue) {
         this.red = red;
         this.green = green;

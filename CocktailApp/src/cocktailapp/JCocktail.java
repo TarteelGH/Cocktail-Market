@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class JCocktail extends javax.swing.JFrame {
 
-    private ArrayList<Ingredients> fruits;
-    private ArrayList<Ingredients> addedFruits=new ArrayList<>(); 
+    private ArrayList<Fruits> fruits;
+    private ArrayList<Fruits> addedFruits=new ArrayList<>(); 
     private ArrayList<Ingredients> milk;
     private ArrayList<Ingredients> addedMilk;
     private ArrayList<Ingredients> addedSugar = new ArrayList<>();
@@ -31,31 +31,6 @@ public class JCocktail extends javax.swing.JFrame {
     private final int blenderCapacity = 1200;
     private int blenderVolume;
 
-//       private Sugar[] sugars = {
-//        new Sugar("No Sugar", 0, 0, null),
-//        new Sugar("One Spoon", 16, 5, Color.WHITE),
-//        new Sugar("Two Spoons", 32, 10, Color.WHITE)
-//    };
-
-    /**
-     * Creates new form JCocktail
-     */
-//    void display() {
-//        String[] names = new String[addedFruits.size()];
-//        for (int i = 0; i < addedFruits.size(); i++) {
-//            names[i] = addedFruits.get(i).getName();
-//        }
-//        blenderInfojList1.setListData(names);
-//    }
-    
-//    void display1() {
-//        String[] names = new String[addedMilk.size()];
-//        for (int i = 0; i < addedMilk.size(); i++) {
-//            names[i] = addedMilk.get(i).getName();
-//        }
-//        
-//        blenderInfojList1.setListData(names);
-//    }
     
      void display() {
         String[] names = new String[addedFruits.size()];
@@ -865,7 +840,7 @@ public class JCocktail extends javax.swing.JFrame {
         fruits.add(new Fruits("Orange", 47, 100, new Color(255, 165, 0)));
         fruits.add(new Fruits("Kiwi", 61, 100, new Color(142, 229, 63)));
         fruits.add(new Fruits("Pineapple", 50, 100, new Color(255, 224, 102)));
-//         populatefruitComboBoxes();
+
         try {
             int selectedIndex = jComboBoxFruit.getSelectedIndex();
             if (selectedIndex == -1) {
@@ -928,23 +903,29 @@ public class JCocktail extends javax.swing.JFrame {
             int totalRed = 0, totalGreen = 0, totalBlue = 0;
             int totalCombinedVolume = 0;
 
-            for (Ingredients fruit : addedFruits) {
+            for (Fruits fruit : addedFruits) {
+                if(fruit.getColor() != null){
                 totalRed += fruit.getColor().getRed() * fruit.getVolume();
                 totalGreen += fruit.getColor().getGreen() * fruit.getVolume();
                 totalBlue += fruit.getColor().getBlue() * fruit.getVolume();
                 totalCombinedVolume += fruit.getVolume();
             }
+             }  
 
             for (Ingredients milk : addedMilk) {
+                 if(milk.getColor() != null){
             totalRed += milk.getColor().getRed() * milk.getVolume();
             totalGreen += milk.getColor().getGreen() * milk.getVolume();
             totalBlue += milk.getColor().getBlue() * milk.getVolume();
         }
+            }
 
         for (Ingredients sugar : addedSugar) {
+             if(sugar.getColor() != null){
             totalRed += sugar.getColor().getRed() * sugar.getVolume();
             totalGreen += sugar.getColor().getGreen() * sugar.getVolume();
             totalBlue += sugar.getColor().getBlue() * sugar.getVolume();
+        }
         }
 
         int combinedRed = totalVolume > 0 ? totalRed / totalVolume : 0;
@@ -960,63 +941,11 @@ public class JCocktail extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-//        Ingredients selectedMilk = milks[milkComboBox.getSelectedIndex()];
-//
-//        double totalCalories = 0;
-//        int totalVolume = 0;
-//        for (Blender blender : arr) {
-//            totalCalories += blender.getCalories();
-           // totalVolume += blender.getVolume();
 
-            /*switch (fruitsComboBox.getSelectedItem().toString()) {
-           case "pineapple":
-                int fruitvolume = Integer.parseInt(fruitVolumeTextField.getText());
-                double calories =  ((50*Integer.parseInt(fruitVolumeTextField.getText()))/100.0);
-                Blender b=new Blender(calories,new Color(255, 224, 102), fruitvolume);
-                
-                 arr.add(b);
-            case "kiwi":
-               int fruitvolume1 = Integer.parseInt(fruitVolumeTextField.getText());
-                double calories1 =  ((61*Integer.parseInt(fruitVolumeTextField.getText()))/100.0);
-                Blender b1=new Blender(calories1,new Color(142, 229, 63), fruitvolume1);
-                 arr.add(b1);
-            case "banana":
-            int fruitvolume2 = Integer.parseInt(fruitVolumeTextField.getText());
-                double calories2 =  ((89*Integer.parseInt(fruitVolumeTextField.getText()))/100.0);
-                Blender b2=new Blender(calories2,new Color(255, 255, 0), fruitvolume2);
-                 arr.add(b2);
-            case "apple":
-                int fruitvolume3 = Integer.parseInt(fruitVolumeTextField.getText());
-                double calories3 =  ((52*Integer.parseInt(fruitVolumeTextField.getText()))/100.0);
-                Blender b3=new Blender(calories3,new Color(144, 238, 144) ,fruitvolume3);
-                 arr.add(b3);
-            case "orange":
-                int fruitvolume4 = Integer.parseInt(fruitVolumeTextField.getText());
-                double calories4 =  ((47*Integer.parseInt(fruitVolumeTextField.getText()))/100.0);
-                Blender b4=new Blender(calories4,new Color(255, 165, 0), fruitvolume4);
-                 arr.add(b4);
-            default:
-            break;
-        }
-        
-    
-    }*/
 // TODO add your handling code here:
 
     }//GEN-LAST:event_jButton3ActionPerformed
-//        int totalCalories = selectedFruit.getCalories() + selectedMilk.getCalories();
-//        int totalVolume = selectedFruit.getVolume() + selectedMilk.getVolume();
-//
-//
-//    private void populateComboBoxes() {
-//        for (Ingredients fruit : fruits) {
-//            fruitsComboBox.addItem(fruit.getName());
-//        }
-//        for (Ingredients milk : milks) {
-//            milkComboBox.addItem(milk.getName());
-//        }
-//
-//    }
+
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:

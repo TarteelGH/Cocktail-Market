@@ -116,13 +116,13 @@ public Blender(ArrayList<Ingredients> ingredients, int capacity, Color color, in
             throw new BlenderEmptyException();
         
     }
-    public void clear(Cocktail cocktail, Blender blender) {
-
-        blender.setColor(new Color(0, 0, 0));
-        blender.setCaloriesPerMixture(0);
-        blender.setVolume(0);
-
-    }
+//    public void clear(Cocktail cocktail, Blender blender) {
+//
+//        blender.setColor(new Color(0, 0, 0));
+//        blender.setCaloriesPerMixture(0);
+//        blender.setVolume(0);
+//
+//    }
 }
 
 //
