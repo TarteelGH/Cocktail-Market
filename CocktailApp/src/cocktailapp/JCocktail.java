@@ -122,8 +122,6 @@ public class JCocktail extends javax.swing.JFrame {
         mediumRadioButton2 = new javax.swing.JRadioButton();
         largeRadioButton3 = new javax.swing.JRadioButton();
         sugatPanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        sugarVolumeTextField = new javax.swing.JTextField();
         addSugarButton = new javax.swing.JButton();
         sugarSlider1 = new javax.swing.JSlider();
         jPanel8 = new javax.swing.JPanel();
@@ -259,7 +257,7 @@ public class JCocktail extends javax.swing.JFrame {
         jComboBoxFruit.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxFruit.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jComboBoxFruit.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBoxFruit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apple", "Banana", "Orange", "Kiwi", "Pineapple" }));
+        jComboBoxFruit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Strawberry 🍓", "Melon🍉", "Apple 🍏", "Banana🍌", "Orange🍊", "Kiwi🥝", "Pineapple🍍" }));
         jComboBoxFruit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxFruitActionPerformed(evt);
@@ -429,12 +427,6 @@ public class JCocktail extends javax.swing.JFrame {
         sugatPanel.setBackground(new java.awt.Color(153, 128, 135));
         sugatPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sugar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 15), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("volume");
-
-        sugarVolumeTextField.setBackground(new java.awt.Color(255, 255, 255));
-
         addSugarButton.setBackground(new java.awt.Color(255, 255, 255));
         addSugarButton.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         addSugarButton.setForeground(new java.awt.Color(51, 51, 51));
@@ -457,27 +449,20 @@ public class JCocktail extends javax.swing.JFrame {
         sugatPanelLayout.setHorizontalGroup(
             sugatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sugatPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(sugatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(sugatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(addSugarButton)
-                        .addGroup(sugatPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(sugarVolumeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(sugarSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addComponent(addSugarButton)
+                .addContainerGap(87, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sugatPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sugarSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         sugatPanelLayout.setVerticalGroup(
             sugatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sugatPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(sugatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(sugarVolumeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(sugarSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(addSugarButton))
         );
 
@@ -834,8 +819,8 @@ public class JCocktail extends javax.swing.JFrame {
     }//GEN-LAST:event_smallRadioButton1ActionPerformed
 
     private void addMilkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMilkButtonActionPerformed
-       if (addedMilk == null) {
-        addedMilk = new ArrayList<>();
+     if (addedMilk == null) {
+       addedMilk = new ArrayList<>();
     }
        milk = new ArrayList<>();
         milk.add(new Milk("Cow's Milk", 42, 100));
@@ -859,19 +844,22 @@ public class JCocktail extends javax.swing.JFrame {
             
         //    listModel.addElement(name);
         
-            milk.get(selectedIndex).setCalories(milkCalories);
-            totalCalories += milk.get(selectedIndex).getCalories();
-            totalVolume += milk.get(selectedIndex).getVolume();
+            //milk.get(selectedIndex).setCalories(milkCalories);
+            totalCalories += milkCalories;
+            totalVolume += milkVolume;
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
 
+
 // TODO add your handling code here:
     }//GEN-LAST:event_addMilkButtonActionPerformed
 
     private void addFruitsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFruitsButtonActionPerformed
-        fruits = new ArrayList<>();
+       fruits = new ArrayList<>();
+        fruits.add(new Fruits("Strawberry", 31, 100, new Color(252, 90, 141)));
+        fruits.add(new Fruits("Melon", 34, 100, new Color(253, 188, 180)));
         fruits.add(new Fruits("Apple", 52, 100, new Color(144, 238, 144)));
         fruits.add(new Fruits("Banana", 89, 100, new Color(255, 255, 0)));
         fruits.add(new Fruits("Orange", 47, 100, new Color(255, 165, 0)));
@@ -898,9 +886,9 @@ public class JCocktail extends javax.swing.JFrame {
             fruitVolumeTextField.setText("");
 //           new code above
 
-            fruits.get(selectedIndex).setCalories(fruitCalories);
-            totalCalories += fruits.get(selectedIndex).getCalories();
-            totalVolume += fruits.get(selectedIndex).getVolume();
+           // fruits.get(selectedIndex).setCalories(fruitCalories);
+            totalCalories += fruitCalories;
+            totalVolume += fruitVolume;
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -930,7 +918,7 @@ public class JCocktail extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
+       try {
             // Check if the total volume exceeds the blender's capacity
             if (totalVolume > blenderCapacity) {
                 throw new Exception("Total volume exceeds blender capacity!");
@@ -948,33 +936,25 @@ public class JCocktail extends javax.swing.JFrame {
             }
 
             for (Ingredients milk : addedMilk) {
-                // Assuming milk is white for simplicity
-                totalRed += milk.getVolume() * 255; // White has RGB (255, 255, 255)
-                totalGreen += milk.getVolume() * 255;
-                totalBlue += milk.getVolume() * 255;
-                totalCombinedVolume += milk.getVolume();
-            }
+            totalRed += milk.getColor().getRed() * milk.getVolume();
+            totalGreen += milk.getColor().getGreen() * milk.getVolume();
+            totalBlue += milk.getColor().getBlue() * milk.getVolume();
+        }
 
-            // Add sugar to the combined volume (sugar is white with RGB (255, 255, 255))
-            totalRed += sugarVolume * 255;
-            totalGreen += sugarVolume * 255;
-            totalBlue += sugarVolume * 255;
-            totalCombinedVolume += sugarVolume;
+        for (Ingredients sugar : addedSugar) {
+            totalRed += sugar.getColor().getRed() * sugar.getVolume();
+            totalGreen += sugar.getColor().getGreen() * sugar.getVolume();
+            totalBlue += sugar.getColor().getBlue() * sugar.getVolume();
+        }
 
-            if (totalCombinedVolume > 0) {
-                totalRed /= totalCombinedVolume;
-                totalGreen /= totalCombinedVolume;
-                totalBlue /= totalCombinedVolume;
-            }
+        int combinedRed = totalVolume > 0 ? totalRed / totalVolume : 0;
+        int combinedGreen = totalVolume > 0 ? totalGreen / totalVolume : 0;
+        int combinedBlue = totalVolume > 0 ? totalBlue / totalVolume : 0;
 
-            Color combinedColor = new Color(totalRed, totalGreen, totalBlue);
-
-            // Display the blender information
-            String[] blenderInfo = new String[4];
-            blenderInfo[0] = "Total Calories: " + totalCalories;
-            blenderInfo[1] = "Total Volume: " + totalVolume + " mL";
-            blenderInfo[2] = "Combined Color: RGB(" + totalRed + ", " + totalGreen + ", " + totalBlue + ")";
-            blenderInfo[3] = "Number of Sugar Spoons: " + sugarSlider1.getValue();
+        String[] blenderInfo = new String[3];
+        blenderInfo[0] = "Total Calories: " + totalCalories;
+        blenderInfo[1] = "Total Volume: " + totalVolume + " mL";
+        blenderInfo[2] = "Combined Color: RGB(" + combinedRed + ", " + combinedGreen + ", " + combinedBlue + ")";
 
             blenderInfojList1.setListData(blenderInfo);
         } catch (Exception e) {
@@ -1074,7 +1054,7 @@ public class JCocktail extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxFruitActionPerformed
 
     private void addSugarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSugarButtonActionPerformed
-    int spoonsOfSugar = sugarSlider1.getValue();
+   int spoonsOfSugar = sugarSlider1.getValue();
     int sugarVolumePerSpoon = 5; // Assuming each spoon of sugar adds 5 mL
     int sugarCaloriesPerSpoon = 16; // Assuming each spoon of sugar adds 16 calories
 
@@ -1088,9 +1068,6 @@ public class JCocktail extends javax.swing.JFrame {
 
     // Display updated info
     displaySugar(); 
-        // int sugarvolume = Integer.parseInt(addSugarButton.getText());
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_addSugarButtonActionPerformed
 
     /**
@@ -1154,7 +1131,6 @@ public class JCocktail extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1188,7 +1164,6 @@ public class JCocktail extends javax.swing.JFrame {
     private javax.swing.JButton pourButton;
     private javax.swing.JRadioButton smallRadioButton1;
     private javax.swing.JSlider sugarSlider1;
-    private javax.swing.JTextField sugarVolumeTextField;
     private javax.swing.JPanel sugatPanel;
     // End of variables declaration//GEN-END:variables
 }
