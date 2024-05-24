@@ -31,7 +31,7 @@ public class DBcocktailApp implements myLog{
     public void log( String log) {
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
             System.out.println("Exception in database logger");
         }
