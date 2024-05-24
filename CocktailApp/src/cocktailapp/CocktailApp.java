@@ -1,8 +1,9 @@
-///*
 // * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 // * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
 // */
-//package cocktailapp;
+package cocktailapp;
+import DBloggers.DBcocktailApp;
+import cocktailapp.Cocktail;
 //
 //import DBloggers.*;
 //import Exceptions.BlenderOverFlowException;
@@ -13,15 +14,18 @@
 // *
 // * @author tarteel
 // */
-//public class CocktailApp {
+public class CocktailApp {
 //
-//    
-////        Cocktail cocktail = new Cocktail();
-////        String data = cocktail.getInfo();
-//          DBcocktailApp db = new DBcocktailApp();
-////        db.log(blenderInfo);
-////        db.log(data);
-//        
+    public static void main(String[] args) {
+        
+     DBcocktailApp db=new DBcocktailApp();
+     db.log("Ingredients :Strawberry  Cow's Milk  \n" +
+"Calories :329\n" +
+"Volume : 525\n" +
+"Color : java.awt.Color[r=64,g=23,b=36]");
+}
+        
+//        }
 //    private static Ingredient[] ingredients;
 //        int sizeOfArray = 6;
 //        ingredients = new Ingredients[sizeOfArray];
@@ -81,4 +85,4 @@
 //   
 //    }
 //    
-//}
+}

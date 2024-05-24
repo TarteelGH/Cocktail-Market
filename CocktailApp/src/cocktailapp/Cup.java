@@ -9,10 +9,28 @@ package cocktailapp;
  * @author tarteel
  */
 public class Cup {
-    
-      private int capacity;
 
+    private final int smallCup=100;
+    private final int mediumCup=150;
+    private final int largeCup=200;
+    private int capacity;
     private int calories;
+
+    public Cup() {
+    }
+
+   
+    public int getSmallCup() {
+        return smallCup;
+    }
+
+    public int getMediumCup() {
+        return mediumCup;
+    }
+
+    public int getLargeCup() {
+        return largeCup;
+    }
 
     public Cup(int capacity) {
         this.capacity = capacity;
@@ -25,8 +43,8 @@ public class Cup {
     public int getCalories() {
         return calories;
     }
-    
-    public void setCalories(int calories){
+
+    public void setCalories(int calories) {
         this.calories = calories;
     }
 }

@@ -15,18 +15,16 @@ import java.util.ArrayList;
 public class Blender {
 
     private ArrayList<Ingredients> ingredients;
-    private int capacity;
+    private  int blenderCapacity=1000;
     private Color color;
     private int volume;
     private double caloriesPerMixture;
 
-    public Blender(int capacity) {
-        this.capacity = capacity;
-        this.ingredients = new ArrayList();
+    public Blender() {
+       
     }
-public Blender(ArrayList<Ingredients> ingredients, int capacity, Color color, int volume, double caloriesPerMixture) {
+public Blender(ArrayList<Ingredients> ingredients, Color color, int volume, double caloriesPerMixture) {
         this.ingredients = ingredients;
-        this.capacity = capacity;
         this.color = color;
         this.volume = volume;
         this.caloriesPerMixture = caloriesPerMixture;
@@ -48,13 +46,11 @@ public Blender(ArrayList<Ingredients> ingredients, int capacity, Color color, in
         this.caloriesPerMixture = caloriesPerMixture;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public int getBlenderCapacity() {
+        return blenderCapacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
+   
 
 
     public Color getColor() {
@@ -75,7 +71,7 @@ public Blender(ArrayList<Ingredients> ingredients, int capacity, Color color, in
 
     public void addIngredient(Ingredients ingredient) throws BlenderOverFlowException {
         
-        if (getVolume() + ingredient.getVolume() <= getCapacity()) {
+        if (getVolume() + ingredient.getVolume() <= getBlenderCapacity()) {
             ingredients.add(ingredient);
              
         } else {
@@ -116,13 +112,6 @@ public Blender(ArrayList<Ingredients> ingredients, int capacity, Color color, in
             throw new BlenderEmptyException();
         
     }
-//    public void clear(Cocktail cocktail, Blender blender) {
-//
-//        blender.setColor(new Color(0, 0, 0));
-//        blender.setCaloriesPerMixture(0);
-//        blender.setVolume(0);
-//
-//    }
-}
+    
 
-//
+}

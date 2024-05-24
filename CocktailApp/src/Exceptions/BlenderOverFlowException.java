@@ -10,6 +10,6 @@ package Exceptions;
  */
 public class BlenderOverFlowException extends Exception {
    public BlenderOverFlowException(){
-       super("Exceeding blender capacity!");
+       super("Total volume exceeds blender capacity!");
    }
 }

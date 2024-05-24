@@ -9,6 +9,8 @@ import Exceptions.BlenderEmptyException;
 import Exceptions.BlenderOverFlowException;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -802,10 +804,14 @@ public class JCocktail extends javax.swing.JFrame {
         milk.add(new Milk("Almond Milk", 17, 100));
 //    initializeIngredientsMilk();
 //       populatemilkComboBoxes();
-        try {
+        
             int selectedIndex = milkComboBox.getSelectedIndex();
             if (selectedIndex == -1) {
-                throw new Exception("No milk type selected!");
+         try {
+             throw new Exception("No milk type selected!");
+         } catch (Exception ex) {
+             Logger.getLogger(JCocktail.class.getName()).log(Level.SEVERE, null, ex);
+         }
             }
              ;
         //    milk.get(selectedIndex);
@@ -823,9 +829,7 @@ public class JCocktail extends javax.swing.JFrame {
             totalCalories += milkCalories;
             totalVolume += milkVolume;
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
+        
 
 
 // TODO add your handling code here:
@@ -896,7 +900,7 @@ public class JCocktail extends javax.swing.JFrame {
        try {
             // Check if the total volume exceeds the blender's capacity
             if (totalVolume > blenderCapacity) {
-                throw new Exception("Total volume exceeds blender capacity!");
+               // throw new Exception("Total volume exceeds blender capacity!");
             }
 
             // Calculate the combined color
@@ -952,30 +956,42 @@ public class JCocktail extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void pourButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pourButtonActionPerformed
-        // TODO add your handling code here:
         int cupVolume = 0;
         int numberOfCups = 0;
-        if (smallRadioButton1.isSelected()) {
-            cupVolume = smallCup;
-        } else if (mediumRadioButton2.isSelected()) {
-            cupVolume = mediumCup;
-        } else if (largeRadioButton3.isSelected()) {
-            cupVolume = largeCup;
-        }
-        if (cupVolume == 0) {
-            JOptionPane.showMessageDialog(this, "Please select a cup size to continue! ");
-        }
-        while (blenderVolume >= cupVolume) {
-            blenderVolume -= cupVolume;
-            numberOfCups += 1;
-            JOptionPane.showMessageDialog(this, "Poured: " + cupVolume + " ,Remaining: " + blenderVolume + " ,Number of poured cups: " + numberOfCups);
-        }
-        if (blenderVolume > 0 && blenderVolume < cupVolume) {
-            cupVolume = blenderVolume;
-            blenderVolume -= cupVolume;
-            JOptionPane.showMessageDialog(this, "Poured: " + cupVolume + " ,Remaining: " + blenderVolume);
+        Cup cup = new Cup();
+// Check if there is any remaining cocktail that is less than the cup size
+        try {
+            if (totalVolume == 0) {
+                throw new Exception("Total volume exceeds blender capacity!");
+            }
+
+            if (smallRadioButton1.isSelected()) {
+                cupVolume = cup.getSmallCup();
+            } else if (mediumRadioButton2.isSelected()) {
+                cupVolume = cup.getMediumCup();
+            } else if (largeRadioButton3.isSelected()) {
+                cupVolume = cup.getLargeCup();
+            }
+            if (cupVolume == 0) {
+                JOptionPane.showMessageDialog(this, "Please select a cup size to continue! ");
+            }
+            while (totalVolume >= cupVolume) {
+                totalVolume -= cupVolume;
+                numberOfCups += 1;
+            }
+            JOptionPane.showMessageDialog(this, "Poured: " + cupVolume + " ,Remaining: " + totalVolume + " ,Number of poured cups: " + numberOfCups);
+
+//            if (totalVolume > 0 && totalVolume < cupVolume) {
+//                cupVolume = totalVolume;
+//                totalVolume -= cupVolume;
+//                JOptionPane.showMessageDialog(this, "Poured: " + cupVolume + " ,Remaining: " + totalVolume);
+//
+//            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
 
         }
+    
     }//GEN-LAST:event_pourButtonActionPerformed
 
     private void jComboBoxFruitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFruitActionPerformed
